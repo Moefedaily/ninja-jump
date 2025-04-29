@@ -238,6 +238,7 @@ body {
   cursor: pointer;
   box-shadow: 0 0 15px var(--highlight-blue);
   transition: all 0.2s;
+  margin-bottom: 15px;
 }
 
 .mobile-btn:active {
