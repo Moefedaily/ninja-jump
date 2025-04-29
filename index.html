@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ninja Jump</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div id="menu-container">
+      <h1 class="game-title">Ninja Jump</h1>
+      <button id="start-button">Begin</button>
+    </div>
+
+    <div id="game-container" class="hidden">
+      <div id="game-screen">
+        <div id="player">
+          <img src="./assets/doodle.png" alt="Player character" />
+        </div>
+      </div>
+      <div id="game-over" class="hidden">
+        <div class="message">Game Over!</div>
+        <div class="final-score">Score: 0</div>
+        <button id="restart-button">Play Again</button>
+      </div>
+      <div id="ui-container">
+        <div id="score">0</div>
+      </div>
+    </div>
+
+    <!-- Load scripts in the correct order -->
+    <script src="./js/platforms.js"></script>
+    <script src="./js/platformManager.js"></script>
+    <script src="./js/player.js"></script>
+    <script src="./js/ui.js"></script>
+    <script src="./js/game.js"></script>
+  </body>
+</html>

@@ -1,0 +1,226 @@
+@font-face {
+  font-family: "mainFont";
+  src: url("./font/njnaruto.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  --primary-blue: #0b4a5d;
+  --highlight-blue: rgba(0, 150, 255, 0.3);
+  --dark-overlay: #020406;
+  --text-white: #f0f0f0;
+  --red-button: #721614;
+  --red-button-hover: #8f1d1a;
+  --red-glow: rgba(255, 50, 50, 0.5);
+  --shadow-black: rgba(0, 0, 0, 0.5);
+  --platform-glow: rgba(0, 200, 255, 0.2);
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+body {
+  overflow: hidden;
+  background-image: url("./assets/bg-main.webp");
+  background-size: contain;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "mainFont", sans-serif;
+}
+
+#menu-container {
+  background-color: var(--dark-overlay);
+  padding: 30px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 0 10px var(--highlight-blue);
+  width: 460px;
+  height: 650px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.game-title {
+  color: var(--text-white);
+  font-size: 42px;
+  margin-bottom: 40px;
+  filter: drop-shadow(0 1px 2px black);
+}
+
+#start-button {
+  font-family: "mainFont", sans-serif;
+  background-color: var(--red-button);
+  border: none;
+  color: var(--text-white);
+  padding: 15px 40px;
+  font-size: 24px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+#start-button:hover {
+  background-color: var(--red-button-hover);
+  transform: scale(1.05);
+  box-shadow: 0 0 20px var(--red-glow);
+}
+
+#game-container {
+  position: relative;
+  width: 460px;
+  height: 650px;
+  background-image: url("./assets/bg-img4.webp");
+  background-size: cover;
+  background-position: center;
+  filter: drop-shadow(0 0 2px black);
+  overflow: hidden;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 10px var(--highlight-blue);
+}
+
+#game-screen {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+#ui-container {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+#game-over {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--dark-overlay);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+#game-over .message {
+  color: var(--text-white);
+  font-size: 36px;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px var(--shadow-black);
+}
+
+#game-over .final-score {
+  color: var(--text-white);
+  font-size: 24px;
+  margin-bottom: 30px;
+}
+
+#restart-button {
+  font-family: "mainFont", sans-serif;
+  background-color: var(--red-button);
+  border: none;
+  color: var(--text-white);
+  padding: 15px 40px;
+  font-size: 24px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+#restart-button:hover {
+  background-color: var(--red-button-hover);
+  transform: scale(1.05);
+  box-shadow: 0 0 20px var(--red-glow);
+}
+
+.hidden {
+  display: none !important;
+}
+
+#score {
+  font-family: "mainFont", sans-serif;
+  color: var(--text-white);
+  font-size: 24px;
+  font-weight: bold;
+  text-shadow: 0 0 6px var(--primary-blue);
+  padding: 10px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+#player {
+  width: 40px;
+  height: 60px;
+  position: absolute;
+  left: 50%;
+  bottom: 100px;
+  transform: translateX(-50%) scale(2);
+}
+
+#player img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 0 2px black);
+}
+
+.platform {
+  position: absolute;
+  background-size: 100% 100%;
+  filter: drop-shadow(0 0 3px var(--primary-blue))
+    drop-shadow(0 1px 2px var(--platform-glow));
+}
+
+@media (max-width: 480px) {
+  #menu-container,
+  #game-container {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    padding: 15px;
+  }
+
+  .game-title {
+    font-size: 32px;
+    margin-bottom: 30px;
+  }
+
+  #start-button,
+  #restart-button {
+    padding: 10px 30px;
+    font-size: 20px;
+  }
+
+  #score {
+    font-size: 20px;
+  }
+
+  #game-over .message {
+    font-size: 28px;
+  }
+
+  #game-over .final-score {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+  #player {
+    transform: translateX(-50%) scale(1.8);
+  }
+}
