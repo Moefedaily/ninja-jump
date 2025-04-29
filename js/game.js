@@ -1,3 +1,15 @@
+window.requestAnimFrame = (function () {
+  return (
+    window.requestAnimationFrame ||
+    window.webkitRequestAnimationFrame ||
+    window.mozRequestAnimationFrame ||
+    window.oRequestAnimationFrame ||
+    window.msRequestAnimationFrame ||
+    function (callback) {
+      window.setTimeout(callback, 1000 / 60);
+    }
+  );
+})();
 class Game {
   constructor() {
     this.gameRunning = false;
@@ -41,7 +53,7 @@ class Game {
     this.platformManager.updatePlatforms();
     this.platformManager.checkCollisions(this.player);
 
-    requestAnimationFrame(() => this.gameLoop());
+    requestAnimFrame(() => this.gameLoop());
   }
 
   increaseScore(points) {
