@@ -103,9 +103,8 @@ body {
   top: env(safe-area-inset-top, 10px);
   left: env(safe-area-inset-left, 10px);
   right: env(safe-area-inset-right, 10px);
+  width: auto;
   z-index: 100;
-  width: calc(100% - 20px);
-  pointer-events: none;
 }
 
 #game-over {
@@ -164,9 +163,7 @@ body {
   font-weight: bold;
   text-shadow: 0 0 6px var(--primary-blue);
   padding: 10px;
-  position: absolute;
-  top: 10px;
-  left: 10px;
+  margin: 0;
 }
 
 #player {
