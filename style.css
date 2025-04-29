@@ -264,69 +264,73 @@ body {
   transform: rotate(227deg);
 }
 
+#game-container {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* Use full viewport height */
+  max-width: 460px; /* Maximum width for larger screens */
+  max-height: 80vh; /* Don't let it get too tall */
+  margin: 0 auto; /* Center horizontally */
+  padding: 10px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Mobile controls with proper spacing */
+#mobile-controls {
+  position: fixed;
+  bottom: 30px; /* Fixed distance from bottom */
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 30px; /* Left/right padding */
+  z-index: 100;
+}
+
+/* Score with proper spacing */
+#score {
+  position: fixed;
+  top: 40px; /* Fixed distance from top */
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 5px 15px;
+  border-radius: 20px;
+  z-index: 100;
+}
+
+/* Mobile optimizations */
 @media (max-width: 480px) {
-  /* Game container adjustments - use viewport units instead of fixed pixels */
+  body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Prevent scrolling */
+    height: 100vh;
+    width: 100vw;
+  }
+
   #game-container {
     width: 100%;
     height: 100vh;
-    max-width: 100%;
-    padding: 10px;
     border-radius: 0;
-    margin: 0;
-    box-sizing: border-box;
+    padding: 0; /* Remove padding on mobile */
   }
 
-  /* Menu container adjustments */
-  #menu-container {
-    width: 100%;
-    height: 100vh;
-    max-width: 100%;
-    padding: 15px;
-    border-radius: 0;
-    box-sizing: border-box;
-  }
-
-  /* Mobile controls - keep them proportional */
-  #mobile-controls {
-    bottom: 5vh; /* Use viewport height instead of fixed pixels */
-    padding: 0 5vw 10px 5vw; /* Use viewport width for horizontal padding */
-  }
-
-  .mobile-btn {
-    /* Smaller buttons that scale with screen size */
-    width: 15vw; /* Viewport-relative width */
-    height: 15vw; /* Viewport-relative height */
-    max-width: 70px; /* But don't let them get too big */
-    max-height: 70px;
-  }
-
-  .kunai-icon {
-    width: 50%;
-    height: 50%;
-  }
-
-  /* Keep player size proportional */
-  #player {
-    transform: translateX(-50%) scale(1.5); /* Reduced from 1.8 */
-  }
-
-  /* Game over message */
-  #game-over .message {
-    font-size: 7vw; /* Viewport-relative font size */
-    max-width: 90%;
-  }
-
-  #game-over .final-score {
-    font-size: 5vw;
+  /* Game screen inside container */
+  #game-screen {
+    height: calc(100% - 100px); /* Leave space for controls */
+    margin-top: 40px; /* Leave space for score */
   }
 }
 
-/* Additional rule to prevent scrolling */
+/* Fix for the zooming/scaling issues */
 html,
 body {
-  overflow: hidden;
-  position: fixed;
-  width: 100%;
+  touch-action: manipulation; /* Better touch handling */
   height: 100%;
-  touch-action: none;
+  position: fixed; /* Prevent bounce scrolling */
+  overflow: hidden;
+  width: 100%;
 }
