@@ -25,7 +25,8 @@ class Platform {
   }
 
   updatePosition() {
-    this.platformDiv.style.transform = `translate(${this.x}px, ${this.y}px)`;
+    this.platformDiv.style.left = this.x + "px";
+    this.platformDiv.style.top = this.y + "px";
   }
 
   remove() {
