@@ -5,6 +5,7 @@ class PlatformManager {
   }
 
   createInitialPlatforms() {
+    // First platform is always normal
     this.platforms.push(
       new Platform(
         this.game.gameContainer.offsetWidth / 2 - 50,
@@ -16,13 +17,21 @@ class PlatformManager {
       )
     );
 
-    for (let i = 0; i < 7; i++) {
+    // Create rest of initial platforms
+    for (let i = 0; i < 10; i++) {
       let x = Math.random() * (this.game.gameContainer.offsetWidth - 100);
       let y = this.game.gameContainer.offsetHeight - 150 - i * 80;
-      let type = Math.random() < 0.2 ? "moving" : "normal";
+      let type = this.getRandomPlatformType();
 
       this.platforms.push(new Platform(x, y, 100, 30, type, this.game));
     }
+  }
+
+  getRandomPlatformType() {
+    const random = Math.random();
+    if (random < 0.1) return "spring";
+    if (random < 0.3) return "moving";
+    return "normal";
   }
 
   updatePlatforms() {
@@ -36,6 +45,7 @@ class PlatformManager {
       const platform = this.platforms[i];
 
       if (platform.y > this.game.gameContainer.offsetHeight) {
+        // Find the highest platform (lowest y value)
         let highestPlatform = this.platforms.reduce(
           (highest, p) => (p.y < highest ? p.y : highest),
           this.game.gameContainer.offsetHeight
@@ -65,7 +75,7 @@ class PlatformManager {
         newX = Math.max(0, Math.min(newX, containerWidth - 100));
 
         let newY = highestPlatform - 90;
-        let newType = Math.random() < 0.2 ? "moving" : "normal";
+        let newType = this.getRandomPlatformType();
 
         // Update existing platform
         platform.x = newX;
@@ -75,6 +85,7 @@ class PlatformManager {
         if (platform.type !== newType) {
           platform.type = newType;
           platform.isMoving = newType === "moving";
+          platform.isSpring = newType === "spring";
           platform.platformDiv.className = "platform platform-" + newType;
           platform.platformDiv.style.backgroundImage = `url('./assets/platform-${newType}.png')`;
         }
@@ -111,7 +122,7 @@ class PlatformManager {
         this.game.gameContainer.offsetHeight
       );
       let y = highestPlatform - 90;
-      let type = Math.random() < 0.2 ? "moving" : "normal";
+      let type = this.getRandomPlatformType();
       this.platforms.push(new Platform(x, y, 100, 30, type, this.game));
     }
   }
@@ -137,7 +148,12 @@ class PlatformManager {
           playerRect.bottom - player.moveY <= platformRect.top
         ) {
           player.y = platform.y - player.height;
-          player.jump();
+
+          if (platform.type === "spring") {
+            player.springJump();
+          } else {
+            player.jump();
+          }
         }
       });
     }

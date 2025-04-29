@@ -15,6 +15,7 @@
   --red-glow: rgba(255, 50, 50, 0.5);
   --shadow-black: rgba(0, 0, 0, 0.5);
   --platform-glow: rgba(0, 200, 255, 0.2);
+  --spring-glow: rgba(255, 215, 0, 0.3);
 }
 
 html,
@@ -187,40 +188,156 @@ body {
     drop-shadow(0 1px 2px var(--platform-glow));
 }
 
+.platform-spring {
+  height: auto;
+  animation: springPlatformBounce 1.8s infinite ease-in-out;
+}
+
+@keyframes springPlatformBounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+#mobile-controls {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+  box-sizing: border-box;
+  z-index: 50;
+}
+
+.mobile-btn {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background-color: rgba(
+    11,
+    74,
+    93,
+    0
+  ); /* Using your primary blue with transparency */
+  border: 1px solid var(--highlight-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 0 15px var(--highlight-blue);
+  transition: all 0.2s;
+}
+
+.mobile-btn:active {
+  transform: scale(0.9);
+  box-shadow: 0 0 25px var(--highlight-blue);
+  background-color: rgba(11, 74, 93, 0.9);
+}
+
+.kunai-icon {
+  width: 40px;
+  height: 40px;
+  background-image: url("./assets/kunai.png"); /* You'll need to add this image */
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.kunai-icon.left {
+  transform: rotate(42deg);
+}
+
+.kunai-icon.right {
+  transform: rotate(227deg);
+}
+
 @media (max-width: 480px) {
-  #menu-container,
+  /* Game container adjustments */
   #game-container {
     width: 100%;
-    height: 100%;
+    height: 100vh;
+    padding: 10px;
     border-radius: 0;
-    padding: 15px;
+    margin: 0;
   }
 
+  /* Menu container adjustments */
+  #menu-container {
+    width: 100%;
+    height: 100vh;
+    padding: 15px;
+    border-radius: 0;
+  }
+
+  /* Game title size */
   .game-title {
-    font-size: 32px;
+    font-size: 36px;
     margin-bottom: 30px;
   }
 
+  /* Button sizes */
   #start-button,
   #restart-button {
-    padding: 10px 30px;
+    padding: 12px 30px;
     font-size: 20px;
   }
 
+  /* Score position and size */
   #score {
-    font-size: 20px;
+    font-size: 18px;
+    top: 10px;
+    left: 10px;
   }
 
+  /* Player size adjustment */
+  #player {
+    transform: translateX(-50%) scale(1.8);
+  }
+
+  /* Game over message */
   #game-over .message {
-    font-size: 28px;
+    font-size: 30px;
   }
 
   #game-over .final-score {
     font-size: 20px;
-    margin-bottom: 20px;
   }
 
-  #player {
-    transform: translateX(-50%) scale(1.8);
+  /* Prevent text selection */
+  * {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
   }
+
+  /* Mobile button enhancements */
+  .mobile-btn {
+    width: 80px;
+    height: 80px;
+    opacity: 0.8;
+  }
+
+  /* Ensure proper spacing for the buttons */
+  #mobile-controls {
+    padding: 0 30px 20px 30px;
+  }
+}
+
+/* Prevent scrolling on mobile */
+html,
+body {
+  position: fixed;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
 }
