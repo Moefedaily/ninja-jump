@@ -265,85 +265,67 @@ body {
 }
 
 @media (max-width: 480px) {
-  /* Game container adjustments */
+  /* Game container adjustments - use viewport units instead of fixed pixels */
   #game-container {
     width: 100%;
     height: 100vh;
+    max-width: 100%;
     padding: 10px;
     border-radius: 0;
     margin: 0;
+    box-sizing: border-box;
   }
 
   /* Menu container adjustments */
   #menu-container {
     width: 100%;
     height: 100vh;
+    max-width: 100%;
     padding: 15px;
     border-radius: 0;
+    box-sizing: border-box;
   }
 
-  /* Game title size */
-  .game-title {
-    font-size: 36px;
-    margin-bottom: 30px;
+  /* Mobile controls - keep them proportional */
+  #mobile-controls {
+    bottom: 5vh; /* Use viewport height instead of fixed pixels */
+    padding: 0 5vw 10px 5vw; /* Use viewport width for horizontal padding */
   }
 
-  /* Button sizes */
-  #start-button,
-  #restart-button {
-    padding: 12px 30px;
-    font-size: 20px;
+  .mobile-btn {
+    /* Smaller buttons that scale with screen size */
+    width: 15vw; /* Viewport-relative width */
+    height: 15vw; /* Viewport-relative height */
+    max-width: 70px; /* But don't let them get too big */
+    max-height: 70px;
   }
 
-  /* Score position and size */
-  #score {
-    font-size: 18px;
-    top: 10px;
-    left: 10px;
+  .kunai-icon {
+    width: 50%;
+    height: 50%;
   }
 
-  /* Player size adjustment */
+  /* Keep player size proportional */
   #player {
-    transform: translateX(-50%) scale(1.8);
+    transform: translateX(-50%) scale(1.5); /* Reduced from 1.8 */
   }
 
   /* Game over message */
   #game-over .message {
-    font-size: 30px;
+    font-size: 7vw; /* Viewport-relative font size */
+    max-width: 90%;
   }
 
   #game-over .final-score {
-    font-size: 20px;
-  }
-
-  /* Prevent text selection */
-  * {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-  }
-
-  /* Mobile button enhancements */
-  .mobile-btn {
-    width: 80px;
-    height: 80px;
-    opacity: 0.8;
-  }
-
-  /* Ensure proper spacing for the buttons */
-  #mobile-controls {
-    padding: 0 30px 20px 30px;
+    font-size: 5vw;
   }
 }
 
-/* Prevent scrolling on mobile */
+/* Additional rule to prevent scrolling */
 html,
 body {
-  position: fixed;
   overflow: hidden;
+  position: fixed;
   width: 100%;
   height: 100%;
   touch-action: none;
