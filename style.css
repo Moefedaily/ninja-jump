@@ -186,8 +186,14 @@ body {
   background-size: 100% 100%;
   filter: drop-shadow(0 0 3px var(--primary-blue))
     drop-shadow(0 1px 2px var(--platform-glow));
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
+.platform-moving {
+  will-change: left, top;
+}
 .platform-spring {
   height: auto;
   animation: springPlatformBounce 1.8s infinite ease-in-out;
