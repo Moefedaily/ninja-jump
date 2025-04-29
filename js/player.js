@@ -78,14 +78,14 @@ class Player {
   }
 
   detectTouchDevice() {
-    // Check if it's a touch device
     const isTouchDevice =
       "ontouchstart" in window ||
       navigator.maxTouchPoints > 0 ||
       navigator.msMaxTouchPoints > 0;
 
-    // Show mobile controls if it's a touch device
-    if (isTouchDevice) {
+    const isSmallScreen = window.innerWidth <= 480;
+
+    if (isTouchDevice && isSmallScreen) {
       const mobileControls = document.getElementById("mobile-controls");
       if (mobileControls) {
         mobileControls.classList.remove("hidden");

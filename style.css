@@ -99,9 +99,15 @@ body {
 }
 
 #ui-container {
-  position: absolute;
-  top: 10px;
-  left: 10px;
+  #ui-container {
+    position: absolute;
+    top: env(safe-area-inset-top, 10px);
+    left: env(safe-area-inset-left, 10px);
+    right: env(safe-area-inset-right, 10px);
+    z-index: 100;
+    width: calc(100% - 20px);
+    pointer-events: none;
+  }
 }
 
 #game-over {
@@ -225,12 +231,7 @@ body {
   width: 70px;
   height: 70px;
   border-radius: 50%;
-  background-color: rgba(
-    11,
-    74,
-    93,
-    0
-  ); /* Using your primary blue with transparency */
+  background-color: rgba(11, 74, 93, 0);
   border: 1px solid var(--highlight-blue);
   display: flex;
   align-items: center;
@@ -250,7 +251,7 @@ body {
 .kunai-icon {
   width: 40px;
   height: 40px;
-  background-image: url("./assets/kunai.png"); /* You'll need to add this image */
+  background-image: url("./assets/kunai.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -265,67 +266,77 @@ body {
 }
 
 @media (max-width: 480px) {
-  /* Game container adjustments - use viewport units instead of fixed pixels */
   #game-container {
     width: 100%;
     height: 100vh;
-    max-width: 100%;
     padding: 10px;
     border-radius: 0;
     margin: 0;
-    box-sizing: border-box;
   }
 
-  /* Menu container adjustments */
   #menu-container {
     width: 100%;
     height: 100vh;
-    max-width: 100%;
     padding: 15px;
     border-radius: 0;
-    box-sizing: border-box;
   }
 
-  /* Mobile controls - keep them proportional */
-  #mobile-controls {
-    bottom: 5vh; /* Use viewport height instead of fixed pixels */
-    padding: 0 5vw 10px 5vw; /* Use viewport width for horizontal padding */
+  .game-title {
+    font-size: 36px;
+    margin-bottom: 30px;
   }
 
-  .mobile-btn {
-    /* Smaller buttons that scale with screen size */
-    width: 15vw; /* Viewport-relative width */
-    height: 15vw; /* Viewport-relative height */
-    max-width: 70px; /* But don't let them get too big */
-    max-height: 70px;
+  #start-button,
+  #restart-button {
+    padding: 12px 30px;
+    font-size: 20px;
   }
 
-  .kunai-icon {
-    width: 50%;
-    height: 50%;
+  #score {
+    font-size: 18px;
+    top: 10px;
+    left: 10px;
   }
 
-  /* Keep player size proportional */
   #player {
-    transform: translateX(-50%) scale(1.5); /* Reduced from 1.8 */
+    transform: translateX(-50%) scale(1.8);
   }
 
-  /* Game over message */
   #game-over .message {
-    font-size: 7vw; /* Viewport-relative font size */
-    max-width: 90%;
+    font-size: 30px;
   }
 
   #game-over .final-score {
-    font-size: 5vw;
+    font-size: 20px;
+  }
+
+  * {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  /* Mobile button enhancements */
+  .mobile-btn {
+    width: 80px;
+    height: 80px;
+    opacity: 0.8;
+  }
+
+  /* Ensure proper spacing for the buttons */
+  #mobile-controls {
+    padding: 0 30px 20px 30px;
   }
 }
 
-/* Additional rule to prevent scrolling */
+/* Prevent scrolling on mobile */
 html,
 body {
-  overflow: hidden;
   position: fixed;
+  overflow: hidden;
   width: 100%;
   height: 100%;
   touch-action: none;
