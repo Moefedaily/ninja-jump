@@ -7,6 +7,7 @@ class Player {
     this.moveX = 0;
     this.moveY = 0;
     this.jumpForce = -15;
+    this.springJumpForce = -40; // Higher jump for spring platforms
     this.game = game;
 
     this.facingLeft = false;
@@ -30,6 +31,74 @@ class Player {
     window.addEventListener("keyup", (e) => {
       this.keys[e.code] = false;
     });
+    this.setupMobileControls();
+  }
+
+  setupMobileControls() {
+    const leftBtn = document.getElementById("btn-left");
+    const rightBtn = document.getElementById("btn-right");
+
+    // Check if mobile controls are present
+    if (!leftBtn || !rightBtn) return;
+
+    // Left button touch events
+    leftBtn.addEventListener("touchstart", () => {
+      this.keys["ArrowLeft"] = true;
+      this.keys["ArrowRight"] = false; // Ensure only one direction at a time
+    });
+
+    leftBtn.addEventListener("touchend", () => {
+      this.keys["ArrowLeft"] = false;
+    });
+
+    // Right button touch events
+    rightBtn.addEventListener("touchstart", () => {
+      this.keys["ArrowRight"] = true;
+      this.keys["ArrowLeft"] = false; // Ensure only one direction at a time
+    });
+
+    rightBtn.addEventListener("touchend", () => {
+      this.keys["ArrowRight"] = false;
+    });
+
+    // Prevent default touch behavior (like scrolling)
+    const mobileControls = document.getElementById("mobile-controls");
+    if (mobileControls) {
+      mobileControls.addEventListener(
+        "touchstart",
+        (e) => {
+          e.preventDefault();
+        },
+        { passive: false }
+      );
+
+      mobileControls.addEventListener(
+        "touchmove",
+        (e) => {
+          e.preventDefault();
+        },
+        { passive: false }
+      );
+    }
+
+    // Show mobile controls on touch devices
+    this.detectTouchDevice();
+  }
+
+  detectTouchDevice() {
+    // Check if it's a touch device
+    const isTouchDevice =
+      "ontouchstart" in window ||
+      navigator.maxTouchPoints > 0 ||
+      navigator.msMaxTouchPoints > 0;
+
+    // Show mobile controls if it's a touch device
+    if (isTouchDevice) {
+      const mobileControls = document.getElementById("mobile-controls");
+      if (mobileControls) {
+        mobileControls.classList.remove("hidden");
+      }
+    }
   }
 
   handleInput() {
@@ -88,5 +157,9 @@ class Player {
 
   jump() {
     this.moveY = this.jumpForce;
+  }
+
+  springJump() {
+    this.moveY = this.springJumpForce;
   }
 }

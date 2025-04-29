@@ -8,6 +8,7 @@ class Platform {
     this.game = game;
 
     this.isMoving = type === "moving";
+    this.isSpring = type === "spring";
     this.moveSpeed = 1;
     this.moveDirection = Math.random() < 0.5 ? -1 : 1;
 
@@ -19,14 +20,6 @@ class Platform {
     this.platformDiv.style.top = y + "px";
 
     this.platformDiv.style.backgroundImage = `url('./assets/platform-${type}.png')`;
-
-    if (type === "spring") {
-      this.springElement = document.createElement("div");
-      this.springElement.className = "spring";
-      this.springElement.style.left = width / 2 - 10 + "px";
-      this.springElement.style.top = "-10px";
-      this.element.appendChild(this.springElement);
-    }
 
     game.gameScreen.appendChild(this.platformDiv);
   }
