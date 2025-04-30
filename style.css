@@ -257,6 +257,31 @@ body {
   transform: rotate(227deg);
 }
 
+#toggle-rules {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+#toggle-rules:hover {
+  color: #ffcc00;
+}
+
+#rules {
+  margin-top: 10px;
+  background-color: rgba(0, 0, 0, 0.85);
+  color: #fff;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  max-width: 300px;
+  transition: all 0.3s ease;
+}
+
 @media (max-width: 480px) {
   #game-container {
     width: 100%;
@@ -286,8 +311,6 @@ body {
 
   #score {
     font-size: 18px;
-    top: 10px;
-    left: 10px;
   }
 
   #player {

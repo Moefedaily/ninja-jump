@@ -103,4 +103,11 @@ document.addEventListener("DOMContentLoaded", () => {
     gameContainer.classList.remove("hidden");
     game.init();
   });
+
+  const toggleRulesBtn = document.getElementById("toggle-rules");
+  const rulesDiv = document.getElementById("rules");
+
+  toggleRulesBtn.addEventListener("click", () => {
+    rulesDiv.classList.toggle("hidden");
+  });
 });

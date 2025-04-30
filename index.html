@@ -10,11 +10,26 @@
     <meta name="mobile-web-app-capable" content="yes" />
     <title>Ninja Jump</title>
     <link rel="stylesheet" href="./style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
   </head>
   <body>
     <div id="menu-container">
       <h1 class="game-title">Ninja Jump</h1>
       <button id="start-button">Begin</button>
+      <button id="toggle-rules" aria-label="Game Rules">
+        <i class="fas fa-scroll"></i>
+      </button>
+
+      <div id="rules" class="hidden">
+        <ul>
+          <li>Jump between platforms to score.</li>
+          <li>Don’t fall — game over!</li>
+          <li>Higher = more points. Stay alert!</li>
+        </ul>
+      </div>
     </div>
 
     <div id="game-container" class="hidden">
@@ -42,7 +57,6 @@
       </div>
     </div>
 
-    <!-- Load scripts in the correct order -->
     <script src="./js/platforms.js"></script>
     <script src="./js/platformManager.js"></script>
     <script src="./js/player.js"></script>
